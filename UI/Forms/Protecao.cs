@@ -6,7 +6,7 @@ using System.Windows.Forms;
 namespace Nottext_Data_Protector.Forms
 {
     public partial class Protecao : Form
-    {
+    { 
         // Para salvar os valores que forem passados em Protecao
         ListView lista = new ListView();
         ImageList listaIcones = new ImageList();
