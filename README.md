@@ -17,3 +17,6 @@ Aqui está um exemplo <br/>
 ![2023-02-08 (1)](https://user-images.githubusercontent.com/51800283/217558339-cf80b287-fa88-40cc-a0da-ca5a993892fc.png)
 ![2023-02-08 (2)](https://user-images.githubusercontent.com/51800283/217558351-5b2da1f7-8c07-4efa-83c7-3e6993561df8.png)
 ![2023-02-08 (3)](https://user-images.githubusercontent.com/51800283/217558358-c2821e9a-44c3-44a9-8b90-822971d8a68f.png)
+
+## Avisos
+Cuidado com este programa, ele não possui limitações ou restrições de pastas, você pode bloquear tudo, até mesmo o C:\, então escolha suas pastas com cuidado!
