@@ -62,7 +62,7 @@ namespace Nottext_Data_Protector.Forms
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(361, 20);
             this.label3.TabIndex = 3;
-            this.label3.Text = "https://github.com/elDimas/Nottext-Data-Protector";
+            this.label3.Text = "https://github.com/elDimasX/Nottext-Data-Protector";
             this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // Sobre
