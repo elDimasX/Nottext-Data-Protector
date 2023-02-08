@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="FuncoesDeListas">
+      <UniqueIdentifier>{2c4b1ae7-968f-4fd1-9c58-141132da5d43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Minifiltro">
+      <UniqueIdentifier>{89365712-c30a-4c94-a319-d029e95aef84}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Cabecalho">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="WlfS.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="cabecalho.h">
+      <Filter>Cabecalho</Filter>
+    </ClInclude>
+    <ClInclude Include="listas.c">
+      <Filter>FuncoesDeListas</Filter>
+    </ClInclude>
+    <ClInclude Include="arquivo.c">
+      <Filter>FuncoesDeListas</Filter>
+    </ClInclude>
+    <ClInclude Include="minifiltro.c">
+      <Filter>Minifiltro</Filter>
+    </ClInclude>
+    <ClInclude Include="processos.c">
+      <Filter>Minifiltro</Filter>
+    </ClInclude>
+    <ClInclude Include="irps.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Inf Include="WlfS.inf">
+      <Filter>Source Files</Filter>
+    </Inf>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="WlfS.rc">
+      <Filter>Source Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>
