@@ -1,5 +1,5 @@
 # Nottext Data Protector
-Projeto em C# e Kernel que faz que proteja ou bloqueia suas pastas ou arquivos, serve como um anti-ransomware ou só pra proteger sua privacidade (fazia muito tempo que eu queria fazer esse program kk)<br/>
+Projeto em C# e Kernel que faz com que proteja ou bloqueie suas pastas ou arquivos, serve como um anti-ransomware, proteger arquivos ou sua privacidade (fazia muito tempo que eu queria fazer esse programa kk)<br/>
 Ele funciona como um programa portátil e funciona desde o Windows 7 até Windows 11, de 32 a 64 bits<br/>
 Ele é extremamente fácil de modificar e possui o código todo comentado, portanto, creio que seja de fácil compreensão, mas se você tive dúvidas, me envie uma mensagem no discord: elDimas#8829
 
