@@ -14,7 +14,7 @@ namespace Nottext_Data_Protector.Forms
         private void label3_Click(object sender, System.EventArgs e)
         {
 
-            Process.Start("https://github.com/elDimas/Nottext-Data-Protector");
+            Process.Start("https://github.com/elDimasX/Nottext-Data-Protector");
         }
     }
 }
