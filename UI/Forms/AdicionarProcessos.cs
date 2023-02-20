@@ -33,8 +33,10 @@ namespace Nottext_Data_Protector.Forms
 
             try
             {
+                Encoding encode = Encoding.GetEncoding("iso-8859-1");
+
                 // Procure e adiciona o somente leitura
-                foreach (string arquivo in File.ReadAllLines(Global.arquivoProcessos))
+                foreach (string arquivo in File.ReadAllLines(Global.arquivoProcessos, encode))
                 {
                     if (arquivo != "")
                     {
