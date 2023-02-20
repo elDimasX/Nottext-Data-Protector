@@ -15,8 +15,12 @@ ZwQueryInformationProcess(
 NTSTATUS
 PsReferenceProcessFilePointer(
 	IN  PEPROCESS Process,
-	OUT PVOID* OutFileObject 
+	OUT PVOID* OutFileObject
 );
+
+// Usado para terminar processos
+PVOID PsGetProcessSectionBaseAddress(PEPROCESS Process);
+NTSTATUS MmUnmapViewOfSection(PEPROCESS Process, PVOID BaseAddress);
 
 /// <summary>
 /// Retorna um nome de um processo
@@ -100,32 +104,32 @@ BOOLEAN ProcessoIgnorarPeloUserMode(IN PEPROCESS Processo)
 /// <param name="Processo">Processo para verificar</param>
 /// 
 /// <returns>Retorna um bool para informar se é um processo nottext ou não</returns>
-BOOLEAN ProcessoNottext(IN PEPROCESS Processo)
+BOOLEAN EProcessoNottext(IN PEPROCESS Processo)
 {
-	BOOLEAN ProcessoNottext = FALSE;
+	BOOLEAN Nottext = FALSE;
 
-	// Váriavéis
-	UNICODE_STRING LocalCompleto;
-	PUNICODE_STRING Local = ExAllocatePool(PagedPool, 2048);
-
-	// Se alocar
-	if (Local)
+	__try
 	{
-		// Converta
-		sprintf(Local, "\\??\\%wZ", (UNICODE_STRING*)LocalProcesso(Processo));
+		UNICODE_STRING str;
+		RtlZeroMemory(&str, sizeof(UNICODE_STRING)); // Inicializa a string como vazia
+		str.MaximumLength = 2048 * sizeof(WCHAR); // Define o tamanho máximo da string em bytes
 
-		// Inicie o ANSI
-		ANSI_STRING As;
+		str.Buffer = ExAllocatePool(PagedPool, str.MaximumLength);
 
-		// Converta ANSI para UNICODE
-		RtlInitAnsiString(&As, Local);
-		NTSTATUS Status = RtlAnsiStringToUnicodeString(&LocalCompleto, &As, TRUE);
-
-		// Libere
-		ExFreePool(Local);
-
-		if (NT_SUCCESS(Status))
+		// Se alocar
+		if (str.Buffer)
 		{
+			swprintf(str.Buffer, L"\\??\\%wZ", (UNICODE_STRING*)LocalProcesso(Processo));
+			str.Length = wcslen(str.Buffer) * sizeof(WCHAR);
+
+			// Se for null
+			if (wcsstr(str.Buffer, L"\\??\\(null)"))
+			{
+				// Pare
+				ExFreePool(str.Buffer);
+				return Nottext;
+			}
+
 			// Variáveis
 			HANDLE Alca;
 			OBJECT_ATTRIBUTES Atributos;
@@ -135,7 +139,7 @@ BOOLEAN ProcessoNottext(IN PEPROCESS Processo)
 			TIME_FIELDS tempo;
 
 			// Inicie o atributo
-			InitializeObjectAttributes(&Atributos, &LocalCompleto, OBJ_CASE_INSENSITIVE | OBJ_KERNEL_HANDLE, NULL, NULL);
+			InitializeObjectAttributes(&Atributos, &str, OBJ_CASE_INSENSITIVE | OBJ_KERNEL_HANDLE, NULL, NULL);
 
 			// Abra o arquivo com permissões de leitura
 			NTSTATUS Status = ZwCreateFile(
@@ -150,8 +154,8 @@ BOOLEAN ProcessoNottext(IN PEPROCESS Processo)
 			// Se falhar
 			if (!NT_SUCCESS(Status))
 			{
-				RtlFreeUnicodeString(&LocalCompleto);
-				return ProcessoNottext;
+				ExFreePool(str.Buffer);
+				return Nottext;
 			}
 
 			// Obtenha as informações
@@ -160,9 +164,9 @@ BOOLEAN ProcessoNottext(IN PEPROCESS Processo)
 			// Se falhar
 			if (!NT_SUCCESS(Status))
 			{
-				RtlFreeUnicodeString(&LocalCompleto);
+				ExFreePool(str.Buffer);
 				ZwClose(Alca);
-				return ProcessoNottext;
+				return Nottext;
 			}
 
 			// Feche a alca
@@ -181,20 +185,20 @@ BOOLEAN ProcessoNottext(IN PEPROCESS Processo)
 
 				// Data da última modificação do Nottext
 				if (
-					strstr(DiaMesAno, "08/02/2023") 
+					strstr(DiaMesAno, "20/02/2023")
 					)
 				{
-					ProcessoNottext = TRUE;
+					Nottext = TRUE;
 				}
 
 				// Libere
 				ExFreePool(DiaMesAno);
 			}
 
-			RtlFreeUnicodeString(&LocalCompleto);
+			ExFreePool(str.Buffer);
 		}
-
 	}
+	__except (EXCEPTION_EXECUTE_HANDLER) {}
 
-	return ProcessoNottext;
+	return Nottext;
 }

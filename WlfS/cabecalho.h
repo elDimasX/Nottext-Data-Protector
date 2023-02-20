@@ -14,12 +14,24 @@ UNICODE_STRING ArquivoBloquear = RTL_CONSTANT_STRING(
 	L"\\??\\C:\\SystemGuards\\pp.sys"
 );
 
+UNICODE_STRING ArquivoOcultar = RTL_CONSTANT_STRING(
+	L"\\??\\C:\\SystemGuards\\pp.enp"
+);
+
 UNICODE_STRING ArquivoProcessos = RTL_CONSTANT_STRING(
 	L"\\??\\C:\\SystemGuards\\pp.inf"
 );
 
 UNICODE_STRING ArquivoProtecaoHabilitada = RTL_CONSTANT_STRING(
 	L"\\??\\C:\\SystemGuards\\pp.end"
+);
+
+UNICODE_STRING ArquivoFinalizarProcesso = RTL_CONSTANT_STRING(
+	L"\\??\\C:\\SystemGuards\\pp.term"
+);
+
+UNICODE_STRING ArquivoMessageBox = RTL_CONSTANT_STRING(
+	L"\\??\\C:\\SystemGuards\\pp.msg"
 );
 
 ///
@@ -31,7 +43,6 @@ NTSTATUS DriverEntry(
 );
 
 NTSTATUS Unload(IN FLT_FILTER_UNLOAD_FLAGS Flags);
-
 
 
 ///
@@ -47,7 +58,6 @@ NTSTATUS Criado(PDEVICE_OBJECT ObjetoDispositivo, PIRP Irp);
 
 // IRP aberto fechado
 NTSTATUS Fechado(PDEVICE_OBJECT ObjetoDispositivo, PIRP Irp);
-
 
 ///
 /// Funções de minifiltro.c
@@ -69,19 +79,34 @@ PFLT_PREOP_CALLBACK_STATUS MiniFiltroPreSetInformation(
 	IN PVOID* Contexto
 );
 
+// Quando é uma operação de fechadura/limpeza do arquivo
+PFLT_PREOP_CALLBACK_STATUS MiniFiltroCleanup(
+	OUT PFLT_CALLBACK_DATA Data,
+	IN PCFLT_RELATED_OBJECTS Objeto,
+	IN PVOID* Contexto
+);
+
 PFLT_FILTER Filtro = NULL;
 
 // Chamdas que queremos registrar
 const FLT_OPERATION_REGISTRATION Chamadas[] =
 {
-	// Requisição criada
 	{IRP_MJ_CREATE, 0, MiniFiltroPreCreate, NULL},
+
 	{IRP_MJ_SET_INFORMATION, 0, MiniFiltroPreSetInformation, NULL},
 	{IRP_MJ_SET_SECURITY, 0, MiniFiltroPreSetInformation, NULL},
+
+	{IRP_MJ_CLEANUP, 0, MiniFiltroCleanup, NULL},
+
 
 	{IRP_MJ_OPERATION_END} // Fim
 
 };
+
+#define TestMode 0
+
+// Se o modo de teste não estiver ativado
+#if !TestMode
 
 // Estrutura para criar o filtro
 const FLT_REGISTRATION RegistroMinifiltro =
@@ -91,7 +116,7 @@ const FLT_REGISTRATION RegistroMinifiltro =
 	FLTFL_REGISTRATION_DO_NOT_SUPPORT_SERVICE_STOP,
 	NULL,
 	Chamadas,			// Chamadas
-	NULL /*Unload*/,	// Permite que o driver seja descarregado
+	/*Unload*/NULL,
 	NULL,
 	NULL,
 	NULL,
@@ -101,6 +126,25 @@ const FLT_REGISTRATION RegistroMinifiltro =
 	NULL,
 	NULL
 };
+#else
+const FLT_REGISTRATION RegistroMinifiltro =
+{
+	sizeof(FLT_REGISTRATION),
+	FLT_REGISTRATION_VERSION,
+	0,
+	NULL,
+	Chamadas,
+	Unload,	// Permite que o driver seja descarregado
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL
+};
+#endif
 
 ///
 /// Funções de processos
@@ -113,8 +157,13 @@ BOOLEAN ProcessoIgnorarPeloUserMode(IN PEPROCESS Processo);
 PUNICODE_STRING LocalProcesso(IN PEPROCESS Processo);
 
 // Saber se é processo nottext ou não
-BOOLEAN ProcessoNottext(IN PEPROCESS Processo);
+BOOLEAN EProcessoNottext(IN PEPROCESS Processo);
 
+// Backup para fazer a verificação do Nottext mais rápido
+PEPROCESS ProcessoNottextBackup = NULL;
+
+// Se é pra terminar ou não os processo
+BOOLEAN TerminarProcessos = FALSE;
 
 ///
 /// Estruturas e funções para listas.c
@@ -143,7 +192,7 @@ BOOLEAN ObjetoProtegido(IN PCHAR Objeto, IN PLIST_ENTRY ListaVerificar);
 VOID LimparLista(OUT PLIST_ENTRY ListaRemover);
 
 // Lista e KMUTEX para proteção de acesso multiplos
-LIST_ENTRY ObjetosSomenteLeitura, ObjetosBloquear, ProcessosPermitidos;
+LIST_ENTRY ObjetosSomenteLeitura, ObjetosBloquear, ObjetosOcultar, ProcessosPermitidos;
 KMUTEX Mutex;
 
 ///
@@ -156,16 +205,31 @@ NTSTATUS LerArquivo(IN PUNICODE_STRING Arquivo, OUT PLIST_ENTRY Lista);
 // Valor
 BOOLEAN ProtecaoHabilitada = TRUE;
 
-// Altera o ProtecaoHabilitada 
-VOID VerificarProtecaoAtiva();
+// Verifica se um arquivo existe
+BOOLEAN ArquivoExiste(IN PUNICODE_STRING Arquivo);
 
 // Remove uma substring
 char* RemoverSubString(OUT char* String, IN const char* Sub);
+
+///
+/// Funções de messagebox.c
+///
+
+// MessageBox
+ULONG KeMessageBox(
+	IN NTSTATUS Status,
+	IN PUNICODE_STRING Titulo,
+	IN PUNICODE_STRING Texto,
+	IN ULONG_PTR Tipo
+);
+
+BOOLEAN MessageBox = FALSE;
 
 
 // Inclusões
 #include "listas.c"
 #include "arquivo.c"
 #include "processos.c"
-#include "irps.h"
+#include "MessageBox.c"
+#include "irps.c"
 #include "minifiltro.c"

@@ -15,6 +15,7 @@ NTSTATUS Unload(IN FLT_FILTER_UNLOAD_FLAGS Flags)
 	// Limpe as listas da memória
 	LimparLista(&ObjetosSomenteLeitura);
 	LimparLista(&ObjetosBloquear);
+	LimparLista(&ObjetosOcultar);
 	LimparLista(&ProcessosPermitidos);
 
 	return STATUS_SUCCESS;
@@ -22,9 +23,16 @@ NTSTATUS Unload(IN FLT_FILTER_UNLOAD_FLAGS Flags)
 
 NTSTATUS DriverEntry(IN PDRIVER_OBJECT DriverObject, IN PUNICODE_STRING RegistryPath)
 {
+
+	/////////////////////////////////////////////////////////////////
 	NTSTATUS Status = STATUS_SUCCESS;
 
-	VerificarProtecaoAtiva();
+	// Se não existir, a proteção está habilitada
+	ProtecaoHabilitada = !ArquivoExiste(&ArquivoProtecaoHabilitada);
+
+	// Verifique
+	TerminarProcessos = ArquivoExiste(&ArquivoFinalizarProcesso);
+	MessageBox = ArquivoExiste(&ArquivoMessageBox);
 
 	// Crie o dispositivo para as comunicações
 	Status = IoCreateDevice(
@@ -74,6 +82,7 @@ NTSTATUS DriverEntry(IN PDRIVER_OBJECT DriverObject, IN PUNICODE_STRING Registry
 	// Inicie a lista
 	InitializeListHead(&ObjetosSomenteLeitura);
 	InitializeListHead(&ObjetosBloquear);
+	InitializeListHead(&ObjetosOcultar);
 	InitializeListHead(&ProcessosPermitidos);
 
 	// Inicie o MUTEXT
@@ -85,7 +94,10 @@ NTSTATUS DriverEntry(IN PDRIVER_OBJECT DriverObject, IN PUNICODE_STRING Registry
 	// Leia o arquivo de bloqueio e adicione a lista
 	LerArquivo(&ArquivoBloquear, &ObjetosBloquear);
 
-	// Leia os processos permitidos
+	// Leia o arquivo de ocultar e adicione a lista
+	LerArquivo(&ArquivoOcultar, &ObjetosOcultar);
+
+	// Leia os processos permitidos e adicione a lista
 	LerArquivo(&ArquivoProcessos, &ProcessosPermitidos);
 
 	// Configure para receber mensagens

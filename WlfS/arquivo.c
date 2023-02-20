@@ -144,18 +144,22 @@ sair:
 }
 
 /// <summary>
-/// Altera o ProtecaoHabilitada verificando se um arquivo existe
+/// Verifica se algum arquivo existe
 /// </summary>
-VOID VerificarProtecaoAtiva()
+/// 
+/// <param name="Arquivo">Arquivo para verificar</param>
+/// <returns>Retorna um BOOLEAN para informar se existe ou não</returns>
+BOOLEAN ArquivoExiste(IN PUNICODE_STRING Arquivo)
 {
     // Váriaveis
+    BOOLEAN Existe = FALSE;
     HANDLE Alca = NULL;
     IO_STATUS_BLOCK Io;
     OBJECT_ATTRIBUTES Atributos;
     NTSTATUS Status;
 
     // Inicie os atributos
-    InitializeObjectAttributes(&Atributos, &ArquivoProtecaoHabilitada, OBJ_CASE_INSENSITIVE | OBJ_KERNEL_HANDLE, NULL, NULL);
+    InitializeObjectAttributes(&Atributos, Arquivo, OBJ_CASE_INSENSITIVE | OBJ_KERNEL_HANDLE, NULL, NULL);
 
     // Abra o arquivo
     Status = ZwCreateFile(
@@ -173,11 +177,9 @@ VOID VerificarProtecaoAtiva()
     // Se conseguir
     if (NT_SUCCESS(Status))
     {
+        Existe = TRUE;
         ZwClose(Alca);
-        ProtecaoHabilitada = FALSE;
     }
-    else {
 
-        ProtecaoHabilitada = TRUE;
-    }
+    return Existe;
 }

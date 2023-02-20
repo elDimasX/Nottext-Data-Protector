@@ -37,7 +37,10 @@
     <ClInclude Include="processos.c">
       <Filter>Minifiltro</Filter>
     </ClInclude>
-    <ClInclude Include="irps.h">
+    <ClInclude Include="irps.c">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MessageBox.c">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

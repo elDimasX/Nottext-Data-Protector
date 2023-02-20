@@ -40,8 +40,6 @@ NTSTATUS InserirObjeto(IN PCHAR Objeto, OUT PLIST_ENTRY Lista)
 		// Insira na lista
 		InsertTailList(Lista, &pp->Lista);
 
-		DbgPrint("Objeto inserida: %s", Objeto);
-
 		// Libere o MUTEX
 		KeReleaseMutex(&Mutex, FALSE);
 	}

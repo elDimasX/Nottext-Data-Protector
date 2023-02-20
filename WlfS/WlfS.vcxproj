@@ -47,6 +47,7 @@
     <Configuration>Debug</Configuration>
     <Platform Condition="'$(Platform)' == ''">Win32</Platform>
     <RootNamespace>WlfS</RootNamespace>
+    <WindowsTargetPlatformVersion>$(LatestTargetPlatformVersion)</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -117,6 +118,8 @@
   <PropertyGroup />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <DebuggerFlavor>DbgengKernelDebugger</DebuggerFlavor>
+    <OutDir>..\UI\Resources</OutDir>
+    <TargetName>WlfS</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <DebuggerFlavor>DbgengKernelDebugger</DebuggerFlavor>
@@ -125,6 +128,8 @@
     <DebuggerFlavor>DbgengKernelDebugger</DebuggerFlavor>
     <TimeStampServer>http://timestamp.verisign.com/scripts/timstamp.dll</TimeStampServer>
     <DisableProductionSignDebugWarnings>false</DisableProductionSignDebugWarnings>
+    <OutDir>..\UI\Resources</OutDir>
+    <TargetName>WlfS_x64</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <DebuggerFlavor>DbgengKernelDebugger</DebuggerFlavor>
@@ -195,10 +200,11 @@
   <ItemGroup>
     <ClInclude Include="arquivo.c" />
     <ClInclude Include="cabecalho.h" />
-    <ClInclude Include="irps.h" />
+    <ClInclude Include="irps.c" />
     <ClInclude Include="listas.c" />
     <ClInclude Include="minifiltro.c" />
     <ClInclude Include="processos.c" />
+    <ClInclude Include="MessageBox.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
