@@ -15,8 +15,20 @@ Aqui está um exemplo <br/>
 ![2023-02-08](https://user-images.githubusercontent.com/51800283/217558289-38a02661-c0d2-4602-89af-2b22f7ee87b7.png)
 ![2023-02-08 (4)](https://user-images.githubusercontent.com/51800283/217558326-a747d1f0-e77d-4970-8a8b-60c3c36f1389.png)
 ![2023-02-08 (1)](https://user-images.githubusercontent.com/51800283/217558339-cf80b287-fa88-40cc-a0da-ca5a993892fc.png)
-![2023-02-08 (2)](https://user-images.githubusercontent.com/51800283/217558351-5b2da1f7-8c07-4efa-83c7-3e6993561df8.png)
-![2023-02-08 (3)](https://user-images.githubusercontent.com/51800283/217558358-c2821e9a-44c3-44a9-8b90-822971d8a68f.png)
+![2023-02-20 (1)](https://user-images.githubusercontent.com/51800283/220177211-7cef7b45-f803-4537-88d9-8c0f265742c8.png)
+![2023-02-20 (2)](https://user-images.githubusercontent.com/51800283/220177216-22c8ac49-168e-4857-a5c0-cd1b3f5adb18.png)
+
+## 1.0.0.1
+
+- MessageBox nos processos que infrijem as regras de arquivos protegidos
+- Processos agora podem ser finalizado imedatamente após violar alguma regra de proteção
+- Correção de bugs e desempenho corrigido
+
+## 1.0.0.0
+
+- Configurações básicas, como instalar drivers, habilita ou não a proteção global, e etc (básico)
+- Ignorar processos, para que eles possam mexer nos objetos protegidos
+- Proteje os arquivos contra modificações de somente-leitura ou qualquer acesso
 
 ## Avisos
 Cuidado com este programa, ele não possui limitações ou restrições de pastas, você pode bloquear tudo, até mesmo o C:\, então escolha suas pastas com cuidado!
