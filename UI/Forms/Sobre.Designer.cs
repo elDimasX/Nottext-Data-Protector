@@ -42,7 +42,7 @@ namespace Nottext_Data_Protector.Forms
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(168, 40);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Nottext Data Protector\r\nVersão BETA: 1.0.0.0";
+            this.label1.Text = "Nottext Data Protector\r\nVersão BETA: 1.0.0.1";
             // 
             // label2
             // 
@@ -60,7 +60,7 @@ namespace Nottext_Data_Protector.Forms
             this.label3.ForeColor = System.Drawing.Color.Blue;
             this.label3.Location = new System.Drawing.Point(168, 105);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(361, 20);
+            this.label3.Size = new System.Drawing.Size(372, 20);
             this.label3.TabIndex = 3;
             this.label3.Text = "https://github.com/elDimasX/Nottext-Data-Protector";
             this.label3.Click += new System.EventHandler(this.label3_Click);

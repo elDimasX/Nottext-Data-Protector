@@ -18,8 +18,14 @@ namespace Nottext_Data_Protector
             // Obtena os argumentos
             string[] args = Environment.GetCommandLineArgs();
 
+            // Instalar todos os componenetes
+            if (args.Contains("InstallAllComponents"))
+            {
+                // Instale tudo
+                SetAcess.InstalarTudo();
+            }
             // Remover todos os componentes
-            if (args.Contains("RemoveAllComponents"))
+            else if (args.Contains("RemoveAllComponents"))
             {
                 // Tire tudo
                 File.Delete("C:\\Windows\\System32\\Drivers\\WlfS.sys");
@@ -37,6 +43,9 @@ namespace Nottext_Data_Protector
                 );
             }
             catch (Exception) { }
+
+            // Envie o IRP para o kernel para ele fazer o backup do processo
+            Kernel.RelerTudo();
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

@@ -66,7 +66,7 @@ namespace Nottext_Data_Protector
         /// </summary>
         public Form1()
         {
-
+            
             InitializeComponent();
             AlterarMouse.AlterarCursor(this);
 
@@ -105,12 +105,6 @@ namespace Nottext_Data_Protector
             {
                 Directory.CreateDirectory(pasta);
 
-                // Escreva
-                string local = pasta + "SetAcess.exe";
-                
-                // SetAccess
-                File.WriteAllBytes(local, Properties.Resources.SetAcess);
-
                 // 32 bits
                 byte[] driver = null;
 
@@ -130,8 +124,17 @@ namespace Nottext_Data_Protector
                 File.WriteAllText(pasta + "WlfS.inf", Properties.Resources.WlfS1);
 
                 // Inicie
-                Process.Start(local).WaitForExit();
-                //Directory.Delete(pasta, true);
+                Process processo = new Process();
+                processo.StartInfo.FileName = Application.ExecutablePath;
+                processo.StartInfo.Arguments = "InstallAllComponents";
+                processo.StartInfo.Verb = "runas";
+
+                // Espere
+                processo.Start();
+                processo.WaitForExit();
+
+                // Envie o IRP para o kernel para ele fazer o backup do processo
+                Kernel.RelerTudo();
 
                 try
                 {
@@ -143,6 +146,9 @@ namespace Nottext_Data_Protector
                     {
                         AtivarModoTeste();
                     }
+
+                    Kernel.RelerTudo();
+
                 } catch (Exception) {
 
                     MessageBox.Show("Não foi possível instalar os componentes necessários", "error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -177,7 +183,10 @@ namespace Nottext_Data_Protector
                 // Se o serviço 
                 if (sv.Status == ServiceControllerStatus.Stopped)
                     sv.Start();
-                
+
+                // Envie o IRP para o kernel para ele fazer o backup do processo
+                Kernel.RelerTudo();
+
             } catch (Exception) {
 
                 // Resolva os problemas

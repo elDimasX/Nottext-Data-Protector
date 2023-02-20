@@ -83,16 +83,6 @@ namespace Nottext_Data_Protector.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Byte[].
         /// </summary>
-        internal static byte[] SetAcess {
-            get {
-                object obj = ResourceManager.GetObject("SetAcess", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta um recurso localizado do tipo System.Byte[].
-        /// </summary>
         internal static byte[] wlfs {
             get {
                 object obj = ResourceManager.GetObject("wlfs", resourceCulture);

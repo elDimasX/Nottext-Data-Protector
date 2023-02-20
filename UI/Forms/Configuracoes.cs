@@ -19,10 +19,11 @@ namespace Nottext_Data_Protector.Forms
             AlterarMouse.AlterarCursor(this);
 
             // Verifique
-            if (File.Exists(Global.protecaoHabilitada))
-            {
-                protecaoGlobal.Checked = false;
-            }
+            protecaoGlobal.Checked = !File.Exists(Global.protecaoHabilitada);
+
+            terminarProcessos.Checked = File.Exists(Global.terminarProcessos);
+            messageBox.Checked = File.Exists(Global.messageBox);
+
         }
 
         /// <summary>
@@ -94,6 +95,64 @@ namespace Nottext_Data_Protector.Forms
 
             removerTudo.Enabled = true;
 
+        }
+
+        /// <summary>
+        /// Checkbox de terminar processo
+        /// </summary>
+        /// 
+        /// <param name="sender">sender</param>
+        /// <param name="e">e</param>
+        private void terminarProcessos_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (terminarProcessos.Checked == true)
+                {
+                    File.WriteAllText(Global.terminarProcessos, "");
+                }
+                else
+                {
+                    File.Delete(Global.terminarProcessos);
+                }
+
+                // Releia tudo
+                Kernel.RelerTudo();
+            }
+            catch (Exception)
+            {
+                protecaoGlobal.Checked = !protecaoGlobal.Checked;
+                MessageBox.Show("Ocorreu um erro ao verificar os dados do usuário", "error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// Checkbox de messageBox
+        /// </summary>
+        /// 
+        /// <param name="sender">sender</param>
+        /// <param name="e">e</param>
+        private void messageBox_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (messageBox.Checked == true)
+                {
+                    File.WriteAllText(Global.messageBox, "");
+                }
+                else
+                {
+                    File.Delete(Global.messageBox);
+                }
+
+                // Releia tudo
+                Kernel.RelerTudo();
+            }
+            catch (Exception)
+            {
+                protecaoGlobal.Checked = !protecaoGlobal.Checked;
+                MessageBox.Show("Ocorreu um erro ao verificar os dados do usuário", "error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

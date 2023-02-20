@@ -15,7 +15,11 @@ namespace Nottext_Data_Protector
         public static string arquivoSomenteLeitura = pasta + "pp.cat";
         public static string arquivoBloquear = pasta + "pp.sys";
         public static string arquivoProcessos = pasta + "pp.inf";
+
         public static string protecaoHabilitada = pasta + "pp.end";
+
+        public static string terminarProcessos = pasta + "pp.term";
+        public static string messageBox = pasta + "pp.msg";
 
     }
 }
