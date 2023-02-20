@@ -20,6 +20,7 @@ Aqui está um exemplo <br/>
 
 ## 1.0.0.1
 
+- Impede modificações por IRP (uma técnica muito avançada para modificar arquivos no kernel)
 - MessageBox nos processos que infrijem as regras de arquivos protegidos
 - Processos agora podem ser finalizado imedatamente após violar alguma regra de proteção
 - Correção de bugs e desempenho corrigido
