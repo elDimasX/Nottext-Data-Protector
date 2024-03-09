@@ -1,10 +1,10 @@
 # Nottext Data Protector
 Projeto em C# e Kernel que faz com que proteja, bloqueie, oculte e várias outras opções para suas pastas ou arquivos, serve como um anti-ransomware, proteger arquivos ou sua privacidade (fazia muito tempo que eu queria fazer esse programa kk)<br/>
 Ele funciona como um programa portátil e funciona desde o Windows 7 até Windows 11, de 32 a 64 bits<br/>
-Ele é extremamente fácil de modificar e possui o código todo comentado, portanto, creio que seja de fácil compreensão, mas se você tive dúvidas, me envie uma mensagem no discord: eldimas
+Ele é extremamente fácil de modificar e possui o código todo comentado, portanto, creio que seja de fácil compreensão, mas se você tive dúvidas, me envie uma mensagem no Discord: eldimas
 
 ## Como funciona
-O Nottext Data Protector funciona ativando o modo de teste do Windows (não tenho certificado digital) e instalado um driver que faz uma comunicação básica entre arquivos compartilhados por eles dois<br/>
+O Nottext Data Protector funciona ativando o modo de teste do Windows (não tenho certificado digital) e instalando um driver que faz uma comunicação básica entre arquivos compartilhados por eles dois<br/>
 
 Aqui está um exemplo <br/>
 ![Captura de tela 2024-03-09 150426](https://github.com/elDimasX/Nottext-Data-Protector/assets/51800283/0e15e2ca-ef3d-47e4-966e-0ff5f82bda3d)
