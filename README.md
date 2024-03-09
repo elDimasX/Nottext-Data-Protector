@@ -6,7 +6,7 @@ Ele é extremamente fácil de modificar e possui o código todo comentado, porta
 ## Como funciona
 O Nottext Data Protector funciona ativando o modo de teste do Windows (não tenho certificado digital) e instalando um driver que faz uma comunicação básica entre arquivos compartilhados por eles dois<br/>
 
-Aqui está um exemplo <br/>
+Aqui está um exemplo: <br/>
 ![Captura de tela 2024-03-09 150426](https://github.com/elDimasX/Nottext-Data-Protector/assets/51800283/0e15e2ca-ef3d-47e4-966e-0ff5f82bda3d)
 
 
@@ -20,6 +20,7 @@ E aqui em baixo segue algumas fotos dele <br/>
 ![2024-03-09 (4)](https://github.com/elDimasX/Nottext-Data-Protector/assets/51800283/48303713-2388-4c54-907d-2ffb4fc8e007)
 ![Captura de tela 2024-03-09 150624](https://github.com/elDimasX/Nottext-Data-Protector/assets/51800283/a2484b5a-e259-410a-bc35-0ddfbc6f83cd)
 ![2024-03-09 (5)](https://github.com/elDimasX/Nottext-Data-Protector/assets/51800283/8c1c30b1-2b82-44dd-a34c-e6294eeded7c)
+https://github.com/elDimasX/Nottext-Data-Protector/assets/51800283/299a4c0b-26fc-42c5-aa61-5ba2960ec798
 
 ## 1.0.0.2
 
