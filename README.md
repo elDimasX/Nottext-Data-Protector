@@ -31,6 +31,7 @@ E aqui em baixo segue algumas fotos dele <br/>
 - O driver agora inicia no boot, permitindo a proteção no modo segurança do Windows
 - Autoproteção para o driver, agora, ele está mais difícil de ser removido por qualquer usuário
 - Multiplas proteções para o mesmo objeto (agora você pode selecionar mais de uma proteção por arquivo ou pasta)
+- Agora, o aplicativo também protege pastas por compartilhamento de rede
 
 ## 1.0.0.1
 
