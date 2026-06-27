@@ -1,5 +1,5 @@
 # Nottext Data Protector
-Obs: precisa do "dotnet-runtime-8.0.27-win-x64" agora, para rodar a UI nova
+Obs: precisa do *"dotnet-runtime-8.0.27-win-x64.exe"* agora, para rodar a UI nova<br/>
 Projeto para proteger pastas/arquivos, processos ou ocultar objetos. Com nova UI totalmente integrada.<br/>
 Ele funciona como um programa portátil e funciona desde o Windows 7 até Windows 11, de 32 a 64 bits<br/>
 Ele é extremamente fácil de modificar e possui o código todo comentado, portanto, creio que seja de fácil compreensão, mas se você tive dúvidas, me envie uma mensagem no Discord: eldimas
