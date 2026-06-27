@@ -1,0 +1,65 @@
+<Page x:Class="Nottext_Data_Protector.Views.AboutPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Background="Transparent">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel>
+            <Border Style="{StaticResource Card}" Margin="0,0,0,18">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="92"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Border Width="74" Height="74" CornerRadius="22" Background="{DynamicResource AccentSoftBrush}" VerticalAlignment="Top">
+                        <TextBlock Text="N" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="30" Foreground="{DynamicResource AccentBrush}"/>
+                    </Border>
+                    <StackPanel Grid.Column="1" Margin="10,0,0,0">
+                        <TextBlock Text="Nottext Data Protector" FontSize="28" FontWeight="Bold"/>
+                        <TextBlock Text="Versão: 1.0.0.2" Foreground="{DynamicResource AccentBrush}" FontWeight="SemiBold" Margin="0,8,0,0"/>
+                        <TextBlock Text="Proteja arquivos, pastas e processos usando as regras do Nottext Data Protector." Style="{StaticResource MutedText}" FontSize="15" Margin="0,12,0,0"/>
+                        <TextBlock Text="Link do código fonte:" FontWeight="SemiBold" Margin="0,16,0,0"/>
+                        <TextBlock Text="https://github.com/elDimasX/Nottext-Data-Protector" Foreground="{DynamicResource AccentBrush}" TextWrapping="Wrap"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <Border Style="{StaticResource Card}" Margin="0,0,0,18">
+                <StackPanel>
+                    <TextBlock Text="Sobre as proteções" FontSize="22" FontWeight="Bold" Margin="0,0,0,14"/>
+                    <UniformGrid Columns="2">
+                        <Border Background="{DynamicResource FieldBrush}" BorderBrush="{DynamicResource BorderBrushSoft}" BorderThickness="1" CornerRadius="18" Padding="16" Margin="0,0,9,12">
+                            <StackPanel>
+                                <TextBlock Text="Somente Leitura" FontSize="17" FontWeight="Bold"/>
+                                <TextBlock Text="O arquivo pode ser lido e executado, mas não pode ser modificado. Recomendado para backups." Style="{StaticResource MutedText}" Margin="0,8,0,0"/>
+                            </StackPanel>
+                        </Border>
+                        <Border Background="{DynamicResource FieldBrush}" BorderBrush="{DynamicResource BorderBrushSoft}" BorderThickness="1" CornerRadius="18" Padding="16" Margin="9,0,0,12">
+                            <StackPanel>
+                                <TextBlock Text="Bloquear" FontSize="17" FontWeight="Bold"/>
+                                <TextBlock Text="O arquivo não pode ser acessado nem lido. Recomendado para backups extremos." Style="{StaticResource MutedText}" Margin="0,8,0,0"/>
+                            </StackPanel>
+                        </Border>
+                        <Border Background="{DynamicResource FieldBrush}" BorderBrush="{DynamicResource BorderBrushSoft}" BorderThickness="1" CornerRadius="18" Padding="16" Margin="0,0,9,12">
+                            <StackPanel>
+                                <TextBlock Text="Ocultar" FontSize="17" FontWeight="Bold"/>
+                                <TextBlock Text="O arquivo não estará visível e nem poderá ser acessado. Recomendado para arquivos e pastas privados." Style="{StaticResource MutedText}" Margin="0,8,0,0"/>
+                            </StackPanel>
+                        </Border>
+                        <Border Background="{DynamicResource FieldBrush}" BorderBrush="{DynamicResource BorderBrushSoft}" BorderThickness="1" CornerRadius="18" Padding="16" Margin="9,0,0,12">
+                            <StackPanel>
+                                <TextBlock Text="Não Executar" FontSize="17" FontWeight="Bold"/>
+                                <TextBlock Text="O arquivo poderá ser totalmente modificado e lido, mas não executado. Recomendado para jogos privados ou algo que não queira ser executado." Style="{StaticResource MutedText}" Margin="0,8,0,0"/>
+                            </StackPanel>
+                        </Border>
+                        <Border Background="{DynamicResource FieldBrush}" BorderBrush="{DynamicResource BorderBrushSoft}" BorderThickness="1" CornerRadius="18" Padding="16" Margin="0,0,9,0">
+                            <StackPanel>
+                                <TextBlock Text="Proteger Processo" FontSize="17" FontWeight="Bold"/>
+                                <TextBlock Text="Proteje o processo de ser modificado ou finalizado. Recomendado para instaladores, jogos contra cheats ou programas empresariais." Style="{StaticResource MutedText}" Margin="0,8,0,0"/>
+                            </StackPanel>
+                        </Border>
+                    </UniformGrid>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

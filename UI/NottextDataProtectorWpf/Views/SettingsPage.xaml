@@ -1,0 +1,145 @@
+﻿<Page x:Class="Nottext_Data_Protector.Views.SettingsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Background="Transparent">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Border Style="{StaticResource Card}" Margin="0,0,0,18">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel>
+                        <TextBlock Text="Configurações" FontSize="24" FontWeight="Bold"/>
+                        <TextBlock Text="Controles rápidos do aplicativo, mantendo os mesmos arquivos e rotinas da versão original." Style="{StaticResource MutedText}" Margin="0,6,0,0"/>
+                    </StackPanel>
+                    <Border Grid.Column="1" Width="52" Height="52" CornerRadius="18" Background="{DynamicResource AccentSoftBrush}" VerticalAlignment="Center">
+                        <Path Width="22" Height="22" Stretch="Uniform" Fill="{DynamicResource AccentBrush}" HorizontalAlignment="Center" VerticalAlignment="Center" Data="M12,2 L4,14 L11,14 L8,22 L20,9 L13,9 Z"/>
+                    </Border>
+                </Grid>
+            </Border>
+
+            <UniformGrid Grid.Row="1" Columns="2" Margin="0,0,0,18">
+                <Border Style="{StaticResource Card}" Margin="0,0,9,9">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Margin="0,0,18,0">
+                            <TextBlock Text="Proteção global" FontSize="20" FontWeight="Bold"/>
+                            <TextBlock Text="Quando ativada, cria o marcador usado pelo driver para aplicar as regras configuradas." Style="{StaticResource MutedText}" Margin="0,6,0,0"/>
+                        </StackPanel>
+                        <CheckBox x:Name="GlobalProtectionCheck" Grid.Column="1" VerticalAlignment="Center" Click="GlobalProtectionCheck_Click"/>
+                    </Grid>
+                </Border>
+
+                <Border Style="{StaticResource Card}" Margin="9,0,0,9">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Margin="0,0,18,0">
+                            <TextBlock Text="Terminar processos" FontSize="20" FontWeight="Bold"/>
+                            <TextBlock Text="Mantém a opção original que sinaliza ao driver para encerrar processos quando necessário." Style="{StaticResource MutedText}" Margin="0,6,0,0"/>
+                        </StackPanel>
+                        <CheckBox x:Name="TerminateProcessesCheck" Grid.Column="1" VerticalAlignment="Center" Click="TerminateProcessesCheck_Click"/>
+                    </Grid>
+                </Border>
+
+                <Border Style="{StaticResource Card}" Margin="0,9,9,0">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Margin="0,0,18,0">
+                            <TextBlock Text="Mostrar mensagens" FontSize="20" FontWeight="Bold"/>
+                            <TextBlock Text="Ativa o arquivo marcador de message box usado pelas rotinas existentes." Style="{StaticResource MutedText}" Margin="0,6,0,0"/>
+                        </StackPanel>
+                        <CheckBox x:Name="MessageBoxCheck" Grid.Column="1" VerticalAlignment="Center" Click="MessageBoxCheck_Click"/>
+                    </Grid>
+                </Border>
+
+                <Border Style="{StaticResource Card}" Margin="9,9,0,0">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Margin="0,0,18,0">
+                            <TextBlock Text="Senha do aplicativo" FontSize="20" FontWeight="Bold"/>
+                            <TextBlock Text="Protege a abertura do app usando o mesmo SHA-256 salvo no arquivo original." Style="{StaticResource MutedText}" Margin="0,6,0,0"/>
+                        </StackPanel>
+                        <CheckBox x:Name="PasswordCheck" Grid.Column="1" VerticalAlignment="Center" Click="PasswordCheck_Click"/>
+                    </Grid>
+                </Border>
+
+                <Border Style="{StaticResource Card}" Margin="0,9,9,0">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Margin="0,0,18,0">
+                            <TextBlock Text="Tema do aplicativo" FontSize="20" FontWeight="Bold"/>
+                            <TextBlock Text="Alterna entre modo escuro e claro. A escolha fica salva na pasta de configuração do app." Style="{StaticResource MutedText}" Margin="0,6,0,0"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                            <Button x:Name="DarkThemeButton" Content="Dark" Style="{StaticResource GhostButton}" Click="DarkThemeButton_Click" Margin="0,0,8,0"/>
+                            <Button x:Name="WhiteThemeButton" Content="White" Style="{StaticResource GhostButton}" Click="WhiteThemeButton_Click"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </UniformGrid>
+
+            <Border Grid.Row="2" Style="{StaticResource Card}" Margin="0,0,0,18">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="52"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Border Width="42" Height="42" CornerRadius="15" Background="{DynamicResource AccentSoftBrush}" BorderBrush="{DynamicResource AccentBrush}" BorderThickness="1" VerticalAlignment="Center">
+                        <Path Width="20" Height="20" Stretch="Uniform" Fill="{DynamicResource AccentBrush}" HorizontalAlignment="Center" VerticalAlignment="Center" Data="M4,4 L20,4 L20,20 L4,20 Z M7,7 L17,7 L17,9 L7,9 Z M7,11 L17,11 L17,13 L7,13 Z M7,15 L14,15 L14,17 L7,17 Z"/>
+                    </Border>
+                    <StackPanel Grid.Column="1" Margin="12,0,18,0">
+                        <TextBlock Text="Backup das configurações" FontSize="20" FontWeight="Bold"/>
+                        <TextBlock Text="Exporte ou importe objetos protegidos, processos autorizados, senha, tema e marcadores do aplicativo." Style="{StaticResource MutedText}" Margin="0,6,0,0"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
+                        <Button Content="Exportar" Style="{StaticResource GhostButton}" Click="ExportConfigButton_Click" Margin="0,0,8,0"/>
+                        <Button Content="Importar" Style="{StaticResource PrimaryButton}" Click="ImportConfigButton_Click"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <Border x:Name="RemoveComponentsCard" Grid.Row="3" Style="{StaticResource Card}" BorderBrush="{DynamicResource DangerBrush}" Background="{DynamicResource DangerSoftBrush}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="52"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Border Width="42" Height="42" CornerRadius="15" Background="{DynamicResource SurfaceBrush}" BorderBrush="{DynamicResource DangerBrush}" BorderThickness="1" VerticalAlignment="Center">
+                        <TextBlock Text="!" Foreground="{DynamicResource DangerBrush}" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <StackPanel Grid.Column="1" Margin="12,0,18,0">
+                        <TextBlock Text="Remover componentes" FontSize="20" FontWeight="Bold"/>
+                        <TextBlock Text="Remove o driver, serviço e arquivos de configuração deste computador." Style="{StaticResource MutedText}" Margin="0,6,0,0"/>
+                    </StackPanel>
+                    <Button Grid.Column="2" Content="Remover tudo" Style="{StaticResource DangerButton}" Click="RemoveAllButton_Click" VerticalAlignment="Center"/>
+                </Grid>
+            </Border>
+        </Grid>
+    </ScrollViewer>
+</Page>
